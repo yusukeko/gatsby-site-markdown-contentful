@@ -1,0 +1,14 @@
+.container {
+  margin: 0 auto; //center things to left and right
+  max-width: 800px; //set up max width of the site
+  padding: 1rem;
+  display: flex; //enable flexbox
+  flex-direction: column; //making the flex direction to be vertical, since we don't want the footer to be right, we want it to be bottom.
+  min-height: 100vh; //setting viewport height. setting container height to be screen height.
+}
+
+.content {
+  flex-grow: 1; //this allows the containerner to grow as the main content space expand.
+}
+
+//we can also do sudo classes as well.
