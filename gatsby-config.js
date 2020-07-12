@@ -1,7 +1,7 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Yusuke's Thoughts on Life",
+    title: "Yusuke Kondo",
     author: "Yusuke Kondo",
   },
   plugins: [
