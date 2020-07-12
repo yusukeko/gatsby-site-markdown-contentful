@@ -7,7 +7,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <h1>Hell World!</h1>
+      <h1>Hello World!</h1>
       <p>
         I'm Yusuke, a product manager and a full-stack web developer living in
         San Francisco Bay Area with my wife and 3 beautiful daughters.
