@@ -9,13 +9,23 @@ const contactPage = () => {
       <Head title="Contact"></Head>
       <h1>Contact</h1>
       <p>
-        If you have any questions about this site, please contact{" "}
-        <Link to="yusukeko0203@gmail.com">yusukeko0203@gmail.com</Link>
+        If you have any questions about this site or anything I might be help,
+        please contact{" "}
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to="yusukeko0203@gmail.com"
+        >
+          <b>yusukeko0203@gmail.com</b>.
+        </Link>
       </p>
       <p>
-        or, Twitter
-        <Link to="https://twitter.com/yusuky" target="_blank">
-          @yusuky
+        or Twitter
+        <Link
+          style={{ textDecoration: "none", color: "black" }}
+          to="https://twitter.com/yusuky"
+          target="_blank"
+        >
+          <b>@yusuky</b>.
         </Link>
       </p>
     </Layout>

@@ -14,7 +14,10 @@ const IndexPage = () => {
       </p>
       <p>
         Need a technical product manager who can code and build APIs?
-        <Link to="/contact">Contact me.</Link>
+        <Link to="/contact" style={{ textDecoration: "none" }}>
+          {" "}
+          Contact me.
+        </Link>
       </p>
     </Layout>
   )

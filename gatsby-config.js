@@ -9,6 +9,7 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
+        forceFullSync: true,
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         // Learn about environment variables: https://gatsby.dev/env-vars
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -31,7 +32,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 750,
+              maxWidth: 800,
               LinkImagesToOriginal: false,
               ignoreFileExtensions: [],
             },

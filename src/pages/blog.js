@@ -1,34 +1,23 @@
 import React from "react"
 import Layout from "../components/layout"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 
-import blogStyles from "./blog.module.scss"
 import Head from "../components/head"
+import Blogcard from "../components/blogcard"
+import blogcardStyles from "../components/blogcard.module.scss"
 
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              title
-              date
-            }
-            html
-            excerpt
-            fields {
-              slug
-            }
-          }
-        }
-      }
       allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
         edges {
           node {
             title
             slug
             publishedDate(formatString: "MMMM Do, YYYY")
+            body {
+              json
+            }
           }
         }
       }
@@ -38,25 +27,31 @@ const BlogPage = () => {
   return (
     <Layout>
       <Head title="Blog"></Head>
-      <h1>Blog</h1>
-      <ol className={blogStyles.posts}>
-        {data.allMarkdownRemark.edges.map(edge => (
-          <li className={blogStyles.post} key={edge.node.frontmatter.date}>
-            <Link to={`/blog/${edge.node.fields.slug}`}>
-              <h2>{edge.node.frontmatter.title}</h2>
-              <p>{edge.node.frontmatter.date}</p>
-            </Link>
-          </li>
+      <h1>Thoughts on Tech, Work, Life and Food</h1>
+      <div className={blogcardStyles.band}>
+        {data.allContentfulBlogPost.edges.map((edge, index) => (
+          <Blogcard
+            hero={index === 0 ? blogcardStyles.item_1 : blogcardStyles.item}
+            key={edge.node.slug}
+            post={`/blog/${edge.node.slug}`}
+            title={edge.node.title}
+            date={edge.node.publishedDate}
+            excerpt={`${edge.node.body.json.content[0].content[0].value.slice(
+              0,
+              100
+            )}...`}
+            URL={
+              edge.node.body.json.content.find(content => {
+                return content.nodeType === "embedded-asset-block"
+              })
+                ? edge.node.body.json.content.find(content => {
+                    return content.nodeType === "embedded-asset-block"
+                  }).data.target.fields.file["en-US"].url
+                : "https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-1.jpg"
+            }
+          ></Blogcard>
         ))}
-        {data.allContentfulBlogPost.edges.map(edge => (
-          <li className={blogStyles.post} key={edge.node.publishedDate}>
-            <Link to={`/blog/${edge.node.slug}`}>
-              <h2>{edge.node.title}</h2>
-              <p>{edge.node.publishedDate}</p>
-            </Link>
-          </li>
-        ))}
-      </ol>
+      </div>
     </Layout>
   )
 }
